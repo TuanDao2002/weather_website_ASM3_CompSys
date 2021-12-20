@@ -5,6 +5,7 @@ const buttons = document.querySelectorAll("button");
 const responseField = document.querySelector("#responseField");
 
 const sendRequest = (button) => {
+    responseField.innerHTML = `<h2>Sending request...</h2>`;
     const location = inputField.value;
     const command = button.value;
     const endpoint = url + location + '/' + command;
