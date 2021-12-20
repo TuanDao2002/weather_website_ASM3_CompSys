@@ -23,6 +23,12 @@ const sendRequest = (button) => {
             var status = xhr.status;
             if (status === 0 || (status >= 200 && status < 400)) {
                 const res = xhr.response;
+
+                if (res === null) {
+                    responseField.innerHTML = `<h2>No response</h2>`;
+                    return;
+                }
+
                 let info;
                 let name;
                 if (command === "temp") {
@@ -32,11 +38,12 @@ const sendRequest = (button) => {
                     name = "Humidity";
                     info = res.humidity + "%";
                 }
+
                 responseField.innerHTML = `<h2>${name}: ${info} </h2>`;
+            } else if (status === 404) {
+                responseField.innerHTML = `<h2>Location not found</h2>`;
             } 
-        } else {        
-            responseField.innerHTML = `<h2>Sending request...</h2>`;
-        }
+        } 
     }
 
     xhr.send();

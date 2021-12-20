@@ -21,7 +21,7 @@ header h1{
 #form{
     display: block;
     margin: 1.5rem auto;
-    width: 60%;
+    width: 40%;
 }
 
 #location{
@@ -83,6 +83,10 @@ button:hover{
 @media screen and (max-width: 850px){
     header h1{
         font-size: 13vw;
+    }
+
+    #form{
+        width: 60%;
     }
 
     button{
