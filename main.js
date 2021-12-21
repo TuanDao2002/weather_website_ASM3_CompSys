@@ -1,19 +1,28 @@
-const url = 'https://weather-api-comsys.herokuapp.com/';
+// const url = 'https://weather-api-comsys.herokuapp.com/';
+const url = 'https://weather-api-comsys.hero.com/'; // test
 
 const inputField = document.querySelector("input");
-const buttons = document.querySelectorAll("button");
+const button = document.querySelector("button");
 const responseField = document.querySelector("#responseField");
-
+const dropdown = document.querySelector("select");
 const sendRequest = (button) => {
-    responseField.innerHTML = `<h2>Sending request...</h2>`;
-    const location = inputField.value;
+    let endpoint;
     const command = button.value;
-    const endpoint = url + location + '/' + command;
+    const measurement = dropdown.options[dropdown.selectedIndex].value;
 
-    if (location === "") {
-        responseField.innerHTML = `<h2>You have not entered location</h2>`;
-        return;
+    if (measurement === "surrounding") {
+        endpoint = url + "" + "/" + command;
+    } else if (measurement === "specific"){
+        const location = inputField.value;
+
+        endpoint = url + location + "/" + command;
+        if (location === "" && measurement === "specific") {
+            responseField.innerHTML = `<h2>You have not entered location</h2>`;
+            return;
+        }
     }
+
+    responseField.innerHTML = `<h2>Sending request...</h2>`;
 
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
@@ -50,9 +59,11 @@ const sendRequest = (button) => {
     xhr.send();
 }
 
-buttons.forEach(button => {
-    //in arrow function, this always refer to global variable
-    button.addEventListener('click', function(){
-        sendRequest(this);
-    });
-})
+//in arrow function, this always refer to global variable
+button.addEventListener('click', function(){
+    sendRequest(this);
+});
+
+function showElement(divId, element) {
+    document.getElementById(divId).style.display = element.value === "specific" ? 'block' : 'none';
+}

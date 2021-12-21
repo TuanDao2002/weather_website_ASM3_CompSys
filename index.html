@@ -16,18 +16,30 @@
     </header>
 
     <form id="form">
+        <h2>
+            <label for="options">Measure temperature at:</label>
+        </h2>
+
+        <select name="options" id="dropdown" onchange="showElement('location', this)">
+            <option value="surrounding">Surrounding</option>
+            <option value="specific">A specific location</option>
+        </select>
+
+        <!-- <div id="container">
+            <button type="button" value="temp">Show temperature</button>
+            <button type="button" value="humid">Show humidity</button>
+        </div> -->
+
         <div id="location">
             <h2>Choose a location:</h2>
             <input required type="text" value="" placeholder="Type in a location">
         </div>
 
-        <div id="responseField">
+        <div id="container">
+            <button type="button" value="temp">Send request</button>
         </div>
 
-        <div id="container">
-            <button type="button" value="temp">Show temperature</button>
-            <button type="button" value="humid">Show humidity</button>
-            <button type="button" value="rainfall">Show rainfall</button>
+        <div id="responseField">
         </div>
     </form>
 </body>
