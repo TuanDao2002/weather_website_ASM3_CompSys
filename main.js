@@ -1,5 +1,5 @@
-// const url = 'https://weather-api-comsys.herokuapp.com/';
-const url = 'https://weather-api-comsys.hero.com/'; // test
+const url = 'https://weather-api-comsys.herokuapp.com/';
+// const url = 'https://weather-api-comsys.hero.com/'; // test
 
 const inputField = document.querySelector("input");
 const button = document.querySelector("button");
@@ -38,20 +38,11 @@ const sendRequest = (button) => {
                     responseField.innerHTML = `<h2>No response</h2>`;
                     return;
                 }
+                
+                render(measurement, res, command);
 
-                let info;
-                let name;
-                if (command === "temp") {
-                    name = "Temperature";
-                    info = res.temperature + "&degC";
-                } else if (command === "humid") {
-                    name = "Humidity";
-                    info = res.humidity + "%";
-                }
-
-                responseField.innerHTML = `<h2>${name}: ${info} </h2>`;
             } else if (status === 404) {
-                responseField.innerHTML = `<h2>Location not found</h2>`;
+                warning(measurement);
             } 
         } 
     }
