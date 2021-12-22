@@ -1,5 +1,4 @@
 const url = 'https://weather-api-comsys.herokuapp.com/';
-// const url = 'https://weather-api-comsys.hero.com/'; // test
 
 const inputField = document.querySelector("input");
 const button = document.querySelector("button");
@@ -55,6 +54,3 @@ button.addEventListener('click', function(){
     sendRequest(this);
 });
 
-function showElement(divId, element) {
-    document.getElementById(divId).style.display = element.value === "specific" ? 'block' : 'none';
-}
