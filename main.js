@@ -1,4 +1,4 @@
-const url = 'https://weather-api-comsys.herokuapp.com/';
+const url = 'http://localhost:3000/';
 
 const inputField = document.querySelector("input");
 const methods = document.querySelector("#methods");
