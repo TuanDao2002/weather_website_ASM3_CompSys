@@ -4,6 +4,9 @@ const renderSpecificLocation = (res, command) => {
     if (command === "temp") {
         name = "Temperature";
         info = res.temperature + "&degC";
+    } else if (command === "humid") {
+        name = "Humidity";
+        info = res.humidity + "%";
     }
 
     responseField.innerHTML = `<h2>${name}: ${info} </h2>`;

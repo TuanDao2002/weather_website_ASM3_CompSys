@@ -1,24 +1,26 @@
 const url = 'https://weather-api-comsys.herokuapp.com/';
 
 const inputField = document.querySelector("input");
-const button = document.querySelector("button");
+const methods = document.querySelector("#methods");
+const options = document.querySelector("#options");
 const responseField = document.querySelector("#responseField");
-const dropdown = document.querySelector("select");
-const sendRequest = (button) => {
-    let endpoint;
-    const command = button.value;
-    const measurement = dropdown.options[dropdown.selectedIndex].value;
 
-    if (measurement === "surrounding") {
-        endpoint = url + "" + "/" + command;
-    } else if (measurement === "specific"){
+const sendRequest = () => {
+    let endpoint;
+    const selectedMethod = methods.options[methods.selectedIndex].value;
+    const selectedOption = options.options[options.selectedIndex].value;
+
+    if (selectedOption === "surrounding") {
+        endpoint = url + "" + "/" + selectedMethod;
+    } else if (selectedOption === "specific"){
         const location = inputField.value;
 
-        endpoint = url + location + "/" + command;
-        if (location === "" && measurement === "specific") {
+        if (location === "") {
             responseField.innerHTML = `<h2>You have not entered location</h2>`;
             return;
         }
+
+        endpoint = url + location + "/" + selectedMethod;
     }
 
     responseField.innerHTML = `<h2>Sending request...</h2>`;
@@ -38,10 +40,10 @@ const sendRequest = (button) => {
                     return;
                 }
                 
-                render(measurement, res, command);
+                render(selectedOption, res, selectedMethod);
 
             } else if (status === 404) {
-                warning(measurement);
+                warning(selectedOption);
             } 
         } 
     }
@@ -49,8 +51,7 @@ const sendRequest = (button) => {
     xhr.send();
 }
 
+const button = document.querySelector("button");
 //in arrow function, this always refer to global variable
-button.addEventListener('click', function(){
-    sendRequest(this);
-});
+button.addEventListener('click', sendRequest);
 
