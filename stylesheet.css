@@ -6,31 +6,40 @@ html{
 body{
     margin: 0;
     width: 100%;
+    height: 100%;
     background-color: aqua;
 }
 
 header{
     text-align: center;
     font-family: Work Sans, sans-serif;
+    height: 20%;
 }
 
 header h1{
     font-size: 5vw;
-    margin: 1.5vw;
+    margin: 0;
 }
 
 #form{
-    display: block;
     margin: 1.5rem auto;
     width: 40%;
+
+    /*make flexbox for form for responsive*/
+    display: flex;
+    height: 60%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 select{
     display: block;
-    margin: 1.5rem auto;
+    margin: auto;
     width: 100%;
-    height: 2rem;
+    min-height: 3rem;
     font-family: Work Sans, sans-serif;
+    font-size: 1rem;
     border: 1.8px black solid;
 }
 
@@ -45,22 +54,20 @@ option{
 
 h2{
     text-align: center;
-    margin: 1.5vw;
+    margin: 1vw;
     font-size: 2vw;
     font-family: Work Sans, sans-serif;
 }
 
 #location input{
-    position: relative;
-    border: black;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    height: 1.5vw;
+    display: block;
+    margin: auto;
     width: 100%;
-    border: solid 1px #1f233e;
+    min-height: 3rem;
     font-family: Work Sans, sans-serif;
+    font-size: 1rem;
+    border: 1.8px black solid;
+    box-sizing: border-box; /* prevent overflow*/
 }
 
 ::placeholder{
@@ -81,12 +88,12 @@ h2{
 button{
     width: 100%;
     margin: 5% 0;
-    height: 10vh;
+    height: 8vh;
     background-color: rgb(85, 233, 233);
     align-self: center;
     display: block;
     font-family: Work Sans, sans-serif;
-    font-size: 15px;
+    font-size: 1rem;
 }
 
 button:hover{
@@ -105,14 +112,16 @@ button:hover{
 
     button{
         margin: 5% 0;
+        font-size: 4vw;
     }
 
     h2{
         font-size: 5vw;
-        margin: 5vw 0;
+        margin: 3.5vw 0;
     }
 
-    #location input{
-        height: 8vw;
+    select, #location input{
+        height: 1rem;
+        font-size: 4vw;
     }
 }
