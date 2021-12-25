@@ -23,15 +23,14 @@ const displayPressure = pressure => {
         return "The weather is steady";
     }
 
-    return "There can be rain. You should bring an umbrella or find a place to hide";
+    return "There can be rain";
 }
 
-const render = (res, command, measurement) => {
-    if (measurement === "surrounding") {
-        responseField.innerHTML = `<h2>Request sent to Raspberry Pi</h2>`;
-        return;
-    }
-    
+const renderSurrounding = () => {
+    responseField.innerHTML = `<h2>Request sent to server</h2>`;
+}
+
+const renderSpecificLocation = (res, command) => {
     let info;
     let name;
     let display;
@@ -52,8 +51,16 @@ const render = (res, command, measurement) => {
     responseField.innerHTML = `<h2>${name}: ${info} </h2><h2>${display}</h2>`;
 }
 
+const render = (res, command, measurement) => {
+    if (measurement === "surrounding") {
+        renderSurrounding();
+    } else if (measurement === "specific") {
+        renderSpecificLocation(res, command);
+    }
+}
+
 const warningSurrounding = () => {
-    responseField.innerHTML = `<h2>Sensor does not respond</h2>`;
+    responseField.innerHTML = `<h2>Server does not respond</h2>`;
 }
 
 const warningSpecificLocation = () => {

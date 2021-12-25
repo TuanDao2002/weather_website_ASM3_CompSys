@@ -11,7 +11,7 @@ const sendRequest = () => {
     const selectedOption = options.options[options.selectedIndex].value;
 
     if (selectedOption === "surrounding") {
-        endpoint = url + "/"  + "Tokyo" + "/" + selectedMethod + "/" + selectedOption;
+        endpoint = url + "/"  + "pi" + "/" + selectedMethod;
     } else if (selectedOption === "specific"){
         const location = inputField.value;
 
@@ -20,7 +20,7 @@ const sendRequest = () => {
             return;
         }
 
-        endpoint = url + "/" + location + "/" + selectedMethod + "/" + selectedOption;
+        endpoint = url + "/" + location + "/" + selectedMethod;
     }
 
     responseField.innerHTML = `<h2>Sending request...</h2>`;
