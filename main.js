@@ -5,22 +5,29 @@ const methods = document.querySelector("#methods");
 const options = document.querySelector("#options");
 const responseField = document.querySelector("#responseField");
 
-const sendRequest = () => {
-    let endpoint;
-    const selectedMethod = methods.options[methods.selectedIndex].value;
-    const selectedOption = options.options[options.selectedIndex].value;
-
+const createEndPoint = (url, selectedOption, selectedMethod) => {
     if (selectedOption === "surrounding") {
-        endpoint = url + "/"  + "pi" + "/" + selectedMethod;
+        return url + "/"  + "pi" + "/" + selectedMethod;
     } else if (selectedOption === "specific"){
         const location = inputField.value;
 
         if (location === "") {
             responseField.innerHTML = `<h2>You have not entered location</h2>`;
-            return;
+            return null;
         }
 
-        endpoint = url + "/" + location + "/" + selectedMethod;
+        return url + "/" + location + "/" + selectedMethod;
+    }
+}
+
+const sendRequest = () => {
+    let endpoint;
+    const selectedMethod = methods.options[methods.selectedIndex].value;
+    const selectedOption = options.options[options.selectedIndex].value;
+
+    endpoint = createEndPoint(url, selectedOption, selectedMethod);
+    if (endpoint === null) {
+        return;
     }
 
     responseField.innerHTML = `<h2>Sending request...</h2>`;
