@@ -26,7 +26,12 @@ const displayPressure = pressure => {
     return "There can be rain. You should bring an umbrella or find a place to hide";
 }
 
-const render = (res, command) => {
+const render = (res, command, measurement) => {
+    if (measurement === "surrounding") {
+        responseField.innerHTML = `<h2>Request sent to Raspberry Pi</h2>`;
+        return;
+    }
+    
     let info;
     let name;
     let display;

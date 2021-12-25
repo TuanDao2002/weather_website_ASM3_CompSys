@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/';
+const url = 'https://weather-api-comsys.herokuapp.com';
 
 const inputField = document.querySelector("input");
 const methods = document.querySelector("#methods");
@@ -11,7 +11,7 @@ const sendRequest = () => {
     const selectedOption = options.options[options.selectedIndex].value;
 
     if (selectedOption === "surrounding") {
-        endpoint = url + "" + "/" + selectedMethod;
+        endpoint = url + "/"  + "Tokyo" + "/" + selectedMethod + "/" + selectedOption;
     } else if (selectedOption === "specific"){
         const location = inputField.value;
 
@@ -20,7 +20,7 @@ const sendRequest = () => {
             return;
         }
 
-        endpoint = url + location + "/" + selectedMethod;
+        endpoint = url + "/" + location + "/" + selectedMethod + "/" + selectedOption;
     }
 
     responseField.innerHTML = `<h2>Sending request...</h2>`;
@@ -40,7 +40,7 @@ const sendRequest = () => {
                     return;
                 }
                 
-                render(res, selectedMethod);
+                render(res, selectedMethod, selectedOption);
 
             } else if (status === 404) {
                 warning(selectedOption);
