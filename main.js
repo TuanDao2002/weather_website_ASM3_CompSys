@@ -47,7 +47,7 @@ const sendRequest = () => {
                     return;
                 }
                 
-                render(res, selectedMethod, selectedOption);
+                render(res, selectedMethod);
 
             } else if (status === 404) {
                 warning(selectedOption);

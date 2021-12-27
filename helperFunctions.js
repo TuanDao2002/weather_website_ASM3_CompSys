@@ -26,11 +26,7 @@ const displayPressure = pressure => {
     return "There can be rain";
 }
 
-const renderSurrounding = () => {
-    responseField.innerHTML = `<h2>Request sent to server</h2>`;
-}
-
-const renderSpecificLocation = (res, command) => {
+const render = (res, command) => {
     let info;
     let name;
     let display;
@@ -49,14 +45,6 @@ const renderSpecificLocation = (res, command) => {
     }
 
     responseField.innerHTML = `<h2>${name}: ${info} </h2><h2>${display}</h2>`;
-}
-
-const render = (res, command, measurement) => {
-    if (measurement === "surrounding") {
-        renderSurrounding();
-    } else if (measurement === "specific") {
-        renderSpecificLocation(res, command);
-    }
 }
 
 const warningSurrounding = () => {
