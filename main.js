@@ -16,7 +16,7 @@ const createEndPoint = (url, selectedOption, selectedMethod) => {
             return null;
         }
 
-        return url + "/" + location + "/" + selectedMethod;
+        return url + "/" + location;
     }
 }
 
