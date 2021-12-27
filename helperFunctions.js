@@ -44,7 +44,12 @@ const render = (res, command) => {
         display = displayPressure(res.pressure);
     }
 
-    responseField.innerHTML = `<h2>${name}: ${info} </h2><h2>${display}</h2>`;
+    if (res.temperature === undefined || res.humidity === undefined || res.pressure === undefined) {
+        responseField.innerHTML = `<h2>Sensor does not respond</h2>`;
+        return;
+    }
+
+    responseField.innerHTML = `<h2>${name}: ${info}</h2><h2>${display}</h2>`;
 }
 
 const warningSurrounding = () => {

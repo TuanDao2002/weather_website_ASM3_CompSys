@@ -41,7 +41,7 @@ const sendDataRequest = selectedMethod => {
                 render(res, selectedMethod);
 
             } else if (status === 404) {
-                responseField.innerHTML = `<h2>Sensor does not respond</h2>`;
+                responseField.innerHTML = `<h2>Server does not respond</h2>`;
             } 
         } 
     }
