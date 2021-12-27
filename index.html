@@ -21,7 +21,7 @@
             <label for="methods">Measure the</label>
         </h2>
 
-        <select name="methods" id="methods">
+        <select name="methods" id="methods" onchange="clearText()">
             <option value="temp">Temperature</option>
             <option value="humid">Humidity</option>
             <option value="pressure">Pressure</option>
@@ -31,7 +31,7 @@
             <label for="options">at</label>
         </h2>
 
-        <select name="options" id="options" onchange="showElement('location', this)">
+        <select name="options" id="options" onchange="showElement('location', this); clearText()">
             <option value="surrounding">Surrounding</option>
             <option value="specific">A specific location</option>
         </select>

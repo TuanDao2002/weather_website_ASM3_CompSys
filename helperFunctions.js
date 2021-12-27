@@ -65,6 +65,9 @@ const warning = measurement => {
 
 function showElement(divId, element) {
     document.getElementById(divId).style.display = element.value === "specific" ? 'block' : 'none';
-    responseField.innerHTML = "";
     inputField.value = "";
+}
+
+function clearText() {
+    responseField.innerHTML = "";
 }
