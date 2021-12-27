@@ -20,7 +20,7 @@ const createEndPoint = (url, selectedOption, selectedMethod) => {
     }
 }
 
-const sendDataRequest = (selectedMethod, selectedOption) => {
+const sendDataRequest = selectedMethod => {
     const endpoint = url + "/pi/data/measure";
 
     const xhr = new XMLHttpRequest();
@@ -41,7 +41,7 @@ const sendDataRequest = (selectedMethod, selectedOption) => {
                 render(res, selectedMethod);
 
             } else if (status === 404) {
-                warning(selectedOption);
+                responseField.innerHTML = `<h2>Sensor does not respond</h2>`;
             } 
         } 
     }
