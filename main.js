@@ -7,7 +7,7 @@ const responseField = document.querySelector("#responseField");
 
 const createEndPoint = (url, selectedOption, selectedMethod) => {
     if (selectedOption === "surrounding") {
-        return url + "/"  + "pi" + "/" + selectedMethod;
+        return url + "/pi/" + selectedMethod;
     } else if (selectedOption === "specific"){
         const location = inputField.value;
 
@@ -20,17 +20,8 @@ const createEndPoint = (url, selectedOption, selectedMethod) => {
     }
 }
 
-const sendRequest = () => {
-    let endpoint;
-    const selectedMethod = methods.options[methods.selectedIndex].value;
-    const selectedOption = options.options[options.selectedIndex].value;
-
-    endpoint = createEndPoint(url, selectedOption, selectedMethod);
-    if (endpoint === null) {
-        return;
-    }
-
-    responseField.innerHTML = `<h2>Sending request...</h2>`;
+const sendDataRequest = (selectedMethod, selectedOption) => {
+    const endpoint = url + "/pi/data/measure";
 
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
@@ -58,7 +49,48 @@ const sendRequest = () => {
     xhr.send();
 }
 
+const sendCommandRequest = () => {
+    let endpoint;
+    const selectedMethod = methods.options[methods.selectedIndex].value;
+    const selectedOption = options.options[options.selectedIndex].value;
+
+    endpoint = createEndPoint(url, selectedOption, selectedMethod);
+    if (endpoint === null) {
+        return;
+    }
+
+    responseField.innerHTML = `<h2>Sending request...</h2>`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.open('GET', endpoint, true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            var status = xhr.status;
+            if (status === 0 || (status >= 200 && status < 400)) {
+                const res = xhr.response;
+
+                if (res === null) {
+                    responseField.innerHTML = `<h2>No response</h2>`;
+                    return;
+                }
+                
+                if (selectedOption === "surrounding") {
+                    sendDataRequest(selectedMethod, selectedOption);
+                } else {
+                    render(res, selectedMethod);
+                }
+            } else if (status === 404) {
+                warning(selectedOption);
+            } 
+        } 
+    }
+
+    xhr.send();
+}
+
 const button = document.querySelector("button");
 //in arrow function, this always refer to global variable
-button.addEventListener('click', sendRequest);
+button.addEventListener('click', sendCommandRequest);
 
