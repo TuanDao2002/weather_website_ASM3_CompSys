@@ -8,10 +8,10 @@ const displayTemp = temp => {
 
 const displayHumid = humid => {
     if (humid >= 30 && humid <= 50) {
-        return "The humidity is good";
+        return "The humidity is good for your health";
     }
 
-    return "The humidity is bad";
+    return "The humidity is bad for your health";
 }
 
 const displayPressure = pressure => {
