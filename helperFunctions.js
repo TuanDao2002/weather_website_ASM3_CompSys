@@ -7,7 +7,7 @@ const displayTemp = temp => {
 }
 
 const displayHumid = humid => {
-    if (humid >= 30 && humid <= 50) {
+    if (humid >= 30 && humid <= 60) {
         return "The humidity is good for your health";
     } else if (humid < 30) {
         return "The weather is too dry. It can cause dry skin";
