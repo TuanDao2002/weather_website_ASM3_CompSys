@@ -32,8 +32,17 @@
         </h2>
 
         <select name="options" id="options" onchange="showElement('location', this); clearText()">
-            <option value="surrounding">Surrounding</option>
+            <option value="surrounding">Surrounding areas</option>
             <option value="specific">A specific location</option>
+        </select>
+
+        <h2>
+            <label for="display">and display with</label>
+        </h2>
+
+        <select name="display" id="display" onchange="showElement('location', this); clearText()">
+            <option value="message">A message</option>
+            <option value="chart">A chart</option>
         </select>
 
         <div id="location">
