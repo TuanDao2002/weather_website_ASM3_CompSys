@@ -3,6 +3,7 @@ const url = 'https://weather-api-comsys.herokuapp.com';
 const inputField = document.querySelector("input");
 const methods = document.querySelector("#methods");
 const options = document.querySelector("#options");
+const display = document.querySelector("#display");
 const responseField = document.querySelector("#responseField");
 
 const createEndPoint = (url, selectedOption, selectedMethod) => {
@@ -53,6 +54,7 @@ const sendCommandRequest = () => {
     let endpoint;
     const selectedMethod = methods.options[methods.selectedIndex].value;
     const selectedOption = options.options[options.selectedIndex].value;
+    const selectedDisplay = display.options[display.selectedIndex].value;
 
     endpoint = createEndPoint(url, selectedOption, selectedMethod);
     if (endpoint === null) {
@@ -91,6 +93,6 @@ const sendCommandRequest = () => {
 }
 
 const button = document.querySelector("button");
-//in arrow function, this always refer to global variable
+//in arrow function, "this" always refer to global variable
 button.addEventListener('click', sendCommandRequest);
 
