@@ -39,6 +39,7 @@ const createChart = (res, command) => {
                     backgroundColor: "rgba(0,0,255,10)",
                     borderColor: "rgba(0,0,0,2)",
                     data: yValues,
+                    pointRadius: 5,
                 }
             ]
         },
