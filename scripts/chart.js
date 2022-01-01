@@ -68,7 +68,7 @@ const createChart = (res, command) => {
                         },
                         scaleLabel: {
                             display: true,
-                            labelString: '',
+                            labelString: 'Date',
                         },
 
                         gridLines: { color: "black" },
