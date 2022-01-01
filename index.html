@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather station</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet/index.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro|Work+Sans:200,500|Roboto:300" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" defer></script>
     <script src="scripts/main.js" defer></script>
     <script src="scripts/helperFunctions.js" defer></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js" defer></script>
+    <script src="scripts/chart.js" defer></script>
 </head>
 <body>
     <header>
@@ -31,18 +34,9 @@
             <label for="options">at</label>
         </h2>
 
-        <select name="options" id="options" onchange="showElement('location', this); clearText()">
+        <select name="options" id="options" onchange="showAndHideElement(this); clearText()">
             <option value="surrounding">Surrounding areas</option>
             <option value="specific">A specific location</option>
-        </select>
-
-        <h2>
-            <label for="display">and display with</label>
-        </h2>
-
-        <select name="display" id="display" onchange="showElement('location', this); clearText()">
-            <option value="message">A message</option>
-            <option value="chart">A chart</option>
         </select>
 
         <div id="location">
@@ -50,12 +44,17 @@
             <input required type="text" value="" placeholder="Type in a location">
         </div>
 
-        <div id="container">
+        <div class="container">
             <button type="button">Send request</button>
         </div>
 
-        <div id="responseField">
+        <div class="container">
+            <button id="chart" type="button">Get chart</button>
         </div>
     </form>
+
+    <div id="responseField">
+        <canvas id="weatherChart"></canvas>
+    </div>
 </body>
 </html>

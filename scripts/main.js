@@ -54,7 +54,6 @@ const sendCommandRequest = () => {
     let endpoint;
     const selectedMethod = methods.options[methods.selectedIndex].value;
     const selectedOption = options.options[options.selectedIndex].value;
-    const selectedDisplay = display.options[display.selectedIndex].value;
 
     endpoint = createEndPoint(url, selectedOption, selectedMethod);
     if (endpoint === null) {

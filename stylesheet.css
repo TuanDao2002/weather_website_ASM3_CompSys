@@ -60,6 +60,10 @@ h2{
     font-family: Work Sans, sans-serif;
 }
 
+#display_options{
+    width: 100%;
+}
+
 #location input{
     display: block;
     margin: auto;
@@ -81,7 +85,7 @@ h2{
     display: block;   
 }
 
-#container{
+.container{
     width: 100%;
     display: block;
 }
@@ -100,6 +104,16 @@ button{
 button:hover{
     background-color: rgb(157, 243, 243);
     font-weight: bold;
+}
+
+#chart{
+}
+
+#weatherChart{
+    display: block;
+    margin: 0 auto;
+    min-height: 40rem;
+    max-width: 60vw;
 }
 
 @media screen and (min-width: 2000px){

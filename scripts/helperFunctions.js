@@ -70,8 +70,14 @@ const warning = measurement => {
     }
 }
 
-function showElement(divId, element) {
-    document.getElementById(divId).style.display = element.value === "specific" ? 'block' : 'none';
+function showAndHideElement(element) {
+    if (element.value === "specific") {
+        document.getElementById("location").style.display = 'block';
+        document.getElementById("chart").style.display = 'none';
+    } else if (element.value === "surrounding"){
+        document.getElementById("location").style.display = 'none';
+        document.getElementById("chart").style.display = 'block';
+    }
     inputField.value = "";
 }
 
