@@ -6,6 +6,14 @@ const options = document.querySelector("#options");
 const display = document.querySelector("#display");
 const responseField = document.querySelector("#responseField");
 
+const getMethod = () => {
+    return methods.options[methods.selectedIndex].value;
+}
+
+const getOption = () => {
+    return options.options[options.selectedIndex].value;
+}
+
 const createEndPoint = (url, selectedOption, selectedMethod) => {
     if (selectedOption === "surrounding") {
         return url + "/pi/" + selectedMethod;
@@ -52,8 +60,8 @@ const sendDataRequest = selectedMethod => {
 
 const sendCommandRequest = () => {
     let endpoint;
-    const selectedMethod = methods.options[methods.selectedIndex].value;
-    const selectedOption = options.options[options.selectedIndex].value;
+    const selectedMethod = getMethod();
+    const selectedOption = getOption();
 
     endpoint = createEndPoint(url, selectedOption, selectedMethod);
     if (endpoint === null) {
@@ -91,7 +99,43 @@ const sendCommandRequest = () => {
     xhr.send();
 }
 
-const button = document.querySelector("button");
-//in arrow function, "this" always refer to global variable
-button.addEventListener('click', sendCommandRequest);
+const sendChartRequest = () => {
+    let endpoint = url + "/pi/get/chart/";
+    const selectedMethod = getMethod();
 
+    endpoint += selectedMethod;
+
+    responseField.innerHTML = `<h2>Sending request...</h2>`;
+
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+
+    xhr.open('GET', endpoint, true);
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            var status = xhr.status;
+            if (status === 0 || (status >= 200 && status < 400)) {
+                const res = xhr.response;
+
+                if (res === null) {
+                    responseField.innerHTML = `<h2>No response</h2>`;
+                    return;
+                }
+
+                createChart(res, selectedMethod);
+                
+            } else if (status === 404) {
+                responseField.innerHTML = `<h2>Server does not respond</h2>`;
+            } 
+        } 
+    }
+
+    xhr.send();
+}
+
+const command = document.querySelector("#command");
+//in arrow function, "this" always refer to global variable
+command.addEventListener('click', sendCommandRequest);
+
+const chart = document.querySelector("#chart");
+chart.addEventListener('click', sendChartRequest);
