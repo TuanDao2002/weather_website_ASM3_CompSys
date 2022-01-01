@@ -1,9 +1,10 @@
 var date = new Date();
 daytime = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getUTCFullYear();
 var xValues = [daytime, daytime, daytime, daytime];
-var yValues = [80,86,100, 80];
+var yValues = [40, 23, 23, 30];
 
 var unit = "°C";
+var weatherFactor = "temperature";
 const chart = new Chart("weatherChart", {
     type: "line",
     data: {
@@ -12,8 +13,8 @@ const chart = new Chart("weatherChart", {
             {
                 fill: false,
                 lineTension: 0,
-                backgroundColor: "rgba(255,0,0,10)",
-                borderColor: "rgba(255,0,0,0.4)",
+                backgroundColor: "rgba(0,0,255,10)",
+                borderColor: "rgba(0,0,0,2)",
                 data: yValues,
             }
         ]
@@ -21,10 +22,10 @@ const chart = new Chart("weatherChart", {
     options: {
         title: {
             display: true,
-            position: 'bottom',
-            // fontSize: 35,
-            fontColor: "rgba(255,0,0)",
-            text: "",
+            position: 'top',
+            fontColor: "rgba(0,0,255)",
+            text: "Changes in " + weatherFactor,
+            fontSize: 25,
         },
         maintainAspectRatio: false,
         responsive: true,
@@ -45,53 +46,55 @@ const chart = new Chart("weatherChart", {
                     scaleLabel: {
                         display: true,
                         labelString: '',
-                        // fontSize: 15,
                     },
+
+                    gridLines: { color: "black" },
                 }
             ],
             yAxes: [
                 {
                     ticks: {
-                        min: 70,
+                        min: 20,
                         stepSize: 5, 
-                        max: 100,
-                        // fontSize: 15,
+                        max: 50,
+                        fontSize: 15,
                     },
 
                     scaleLabel: {
                         display: true,
-                        labelString: unit,
-                        // fontSize: 15,
+                        labelString: weatherFactor + `(${unit})`,
                     },
+
+                    gridLines: { color: "black" },
                 }
             ],
         }
     },
-    // plugins: [{
-    //     beforeDraw: function(context) {
-    //        var chartHeight = context.chart.height;
-    //        var chartWidth = context.chart.width;
-    //        if (chartWidth >= 1366){
-    //        context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2.5 / 100; 
-    //        context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 2.5 / 100;
-    //        context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 1.25 / 100;
-    //        context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 1.5 / 100;
-    //        } else if (chartWidth <= 500) {
-    //         context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2.5 / 100; 
-    //         context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 3.5 / 100;
-    //         context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 4 / 100;
-    //         context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 5.5 / 100;
-    //         } else if (chartWidth > 767 && chartWidth <= 1024) {
-    //         context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2 / 100; 
-    //         context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 2.5 / 100;
-    //         context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 3 / 100;
-    //         context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 2.5 / 100;
-    //        } else if (chartWidth > 1024 && chartWidth <= 1366) {
-    //         context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 1.25/ 100; 
-    //         context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 3 / 100;
-    //         context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 2.5 / 100;
-    //         context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 2 / 100;
-    //        }  
-    //     }
-    // }],
+    plugins: [{
+        beforeDraw: function(context) {
+           var chartHeight = context.chart.height;
+           var chartWidth = context.chart.width;
+            if (chartWidth <= 500) {
+            context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2.25 / 100; 
+            context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 2.5 / 100;
+            context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 4.5 / 100;
+            context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 5.5 / 100;
+            } else if (chartWidth > 767 && chartWidth <= 1024) {
+            context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2.25 / 100; 
+            context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 2.5 / 100;
+            context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 1.75 / 100;
+            context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 2.5 / 100;
+           } else if (chartWidth > 1024 && chartWidth <= 1366) {
+            context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 1.25/ 100; 
+            context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 3 / 100;
+            context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 2.5 / 100;
+            context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 2 / 100;
+           } else if (chartWidth >= 1366){
+            context.scales['y-axis-0'].options.ticks.fontSize = chartHeight * 2.5 / 100; 
+            context.scales['y-axis-0'].options.scaleLabel.fontSize = chartHeight * 2.5 / 100;
+            context.scales['x-axis-0'].options.ticks.fontSize = chartWidth * 1.25 / 100;
+            context.scales['x-axis-0'].options.scaleLabel.fontSize = chartWidth * 1.5 / 100;
+            }
+        }
+    }],
 });

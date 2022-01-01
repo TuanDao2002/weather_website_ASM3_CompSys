@@ -106,9 +106,6 @@ button:hover{
     font-weight: bold;
 }
 
-#chart{
-}
-
 #weatherChart{
     display: block;
     margin: 0 auto;
@@ -210,6 +207,10 @@ button:hover{
     select, #location input, button{
         min-height: 3.5rem;
         font-size: 5vw;
+    }
+
+    #weatherChart{
+        max-width: 90vw;
     }
 }
 
