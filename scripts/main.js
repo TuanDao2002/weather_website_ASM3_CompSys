@@ -5,6 +5,7 @@ const methods = document.querySelector("#methods");
 const options = document.querySelector("#options");
 const display = document.querySelector("#display");
 const responseField = document.querySelector("#responseField");
+const chartField = document.querySelector("#chartField");
 
 const getMethod = () => {
     return methods.options[methods.selectedIndex].value;
@@ -69,6 +70,7 @@ const sendCommandRequest = () => {
     }
 
     responseField.innerHTML = `<h2>Sending request...</h2>`;
+    chartField.innerHTML = "";
 
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
@@ -105,7 +107,8 @@ const sendChartRequest = () => {
 
     endpoint += selectedMethod;
 
-    responseField.innerHTML = `<h2>Sending request...</h2>`;
+    responseField.innerHTML = "";
+    chartField.innerHTML = `<h2>Sending request...</h2>`;
 
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
@@ -118,14 +121,14 @@ const sendChartRequest = () => {
                 const res = xhr.response;
 
                 if (res === null) {
-                    responseField.innerHTML = `<h2>No response</h2>`;
+                    chartField.innerHTML = `<h2>No response</h2>`;
                     return;
                 }
 
                 createChart(res, selectedMethod);
                 
             } else if (status === 404) {
-                responseField.innerHTML = `<h2>Server does not respond</h2>`;
+                chartField.innerHTML = `<h2>Server does not respond</h2>`;
             } 
         } 
     }

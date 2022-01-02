@@ -1,31 +1,51 @@
 const displayTemp = temp => {
-    if (temp < 25) {
-        return "The weather is cold";
-    } 
-
-    return "The weather is hot";
+    if (temp > 30) {
+        return "Above the maximum temperature that plants can grow.";
+    } else if (temp > 24 && temp <= 30) {
+        return "The temperature is good for outdoor plants but not indoor plants.";
+    } else if (temp > 15 && temp <= 24) {
+        return "The temperature is good for most plants.";
+    } else if (temp > 13 && temp <= 15) {
+        return "The temperature is not good for tender plants.";
+    } else if (temp > 10 && temp <= 13) {
+        return "The temperature is not good for half-hardy plants.";
+    } else if (temp > 7 && temp <= 10) {
+        return "The temperature is only suitable for hardy plants.";
+    } else if (temp <= 7) {
+        return "The temperature is not good for most plants.";
+    }
 }
 
 const displayHumid = humid => {
-    if (humid >= 30 && humid <= 60) {
-        return "The humidity is good for your health";
-    } else if (humid < 30) {
-        return "The weather is too dry. It can cause dry skin";
+    if (humid === 0) {
+        return "No moisture in the air. Difficult even for cacti to survive."
+    } else if (humid >= 10 && humid < 20) {
+        return "Cacti and succulents can survive. Air this dry will injure most houseplants.";
+    } else if (humid >= 20 && humid < 30) {
+        return "This is the humidity level of an average home. Some plants will be able to live, including cacti and succulents.";
+    } else if (humid >= 40 && humid < 50) {
+        return "This is ideal for the flowering stage of mature plants.";
+    } else if (humid >= 50 && humid < 60) {
+        return "This is ideal for the vegetative stage of growing plants.";
+    } else if (humid >= 60 && humid < 80) {
+        return "This is ideal for a greenhouse, which can be used to grow various plants, both tropical and otherwise.";
+    } else if (humid >= 90 && humid <= 100) {
+        return "This is ideal for the germination of seeds and growth of some seedlings. People would find it uncomfortable.";
     }
 
-    return "The weather is too moist. It can cause respiratory problems";
+    return "The humidity is normal for most of agricultural activities";
 }
 
 const displayPressure = pressure => {
     if (pressure > 1022) {
-        return "The weather is calm with clear sky";
+        return "The weather is calm with clear sky, suitable for agriculture.";
     }
 
     if (pressure > 1009) {
-        return "The weather is steady";
+        return "The weather is steady, suitable for agriculture.";
     }
 
-    return "There can be rain";
+    return "There can be rain, check if plants are flooded.";
 }
 
 const render = (res, command) => {
@@ -83,4 +103,5 @@ function showAndHideElement(element) {
 
 function clearText() {
     responseField.innerHTML = "";
+    chartField.innerHTML = "";
 }

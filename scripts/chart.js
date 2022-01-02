@@ -26,7 +26,7 @@ const createChart = (res, command) => {
     const maxY = Math.max(...yValues);
     const steps = (maxY - minY) / 5;
 
-    responseField.innerHTML = `<canvas id="weatherChart"></canvas>`;
+    chartField.innerHTML = `<canvas id="weatherChart"></canvas>`;
 
     const chart = new Chart("weatherChart", {
         type: "line",
