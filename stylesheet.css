@@ -36,6 +36,7 @@ header h1 {
 #form {
   margin: 0rem auto;
   width: 40%;
+  margin-bottom: 0;
 
   /*make flexbox for form for responsive*/
   display: flex;
@@ -43,6 +44,10 @@ header h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+#responseField h2 {
+  margin: 0;
 }
 
 #form > * {
